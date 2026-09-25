@@ -8,11 +8,16 @@ export class adminHelper {
 
     static async login() {
 
+                console.log('EMAIL_ADMIN:', process.env.EMAIL_ADMIN);
+                console.log('SENHA_ADMIN:', process.env.SENHA_ADMIN);
+
         const response = await request(app)
             .post('/api/auth/login')
             .send({
                 email: process.env.EMAIL_ADMIN,
                 senha: process.env.SENHA_ADMIN
+
+
             });
 
         return response;
@@ -33,5 +38,6 @@ export class adminHelper {
             .post('/api/admin/alunos')
             .set('Authorization', `Bearer ${token}`)
             .send(aluno);
+
     }
 }

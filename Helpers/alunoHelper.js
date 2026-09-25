@@ -8,6 +8,9 @@ export class alunoHelper {
 
     static async login() {
 
+        console.log('EMAIL_ALUNO:', process.env.EMAIL_ALUNO);
+        console.log('SENHA_ALUNO:', process.env.SENHA_ALUNO);
+
         const response = await request(app)
             .post('/api/auth/login')
             .send({
