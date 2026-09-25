@@ -3,7 +3,6 @@ import app from '../src/app.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-//teste teste 
 
 export class alunoHelper {
 

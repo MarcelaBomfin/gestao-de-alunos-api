@@ -1,4 +1,4 @@
-import { adminHelper } from '../helpers/adminHelper.js';
+import { adminHelper } from '../Helpers/adminHelper.js';
 import { expect } from 'chai';
 import alunos from '../data/alunos.json' with { type: 'json' };
 

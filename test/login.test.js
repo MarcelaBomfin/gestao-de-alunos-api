@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { adminHelper } from '../helpers/adminHelper.js';
-import { alunoHelper } from '../helpers/alunoHelper.js';
+import { adminHelper } from '../Helpers/adminHelper.js';
+import { alunoHelper } from '../Helpers/alunoHelper.js';
 
 
 describe('Login', () => {
