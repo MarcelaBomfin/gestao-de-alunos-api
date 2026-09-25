@@ -34,8 +34,8 @@ jobs:
         with:
           mongodb-version: '7.0'
 
-      - name: Run testes
-        run: npm testes
+      - name: Executar Testes
+        run: npm test
         env:
           EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
           SENHA_ADMIN: ${{ secrets.SENHA_ADMIN }}
