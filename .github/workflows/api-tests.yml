@@ -15,7 +15,6 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
-    environment: ENV
 
     steps:
 
@@ -35,11 +34,14 @@ jobs:
         with:
           mongodb-version: '7.0'
 
-      - name: Executar testes
-        run: npm test
+      - name: Create .env file
+        run: |
         env:
           EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
           SENHA_ADMIN: ${{ secrets.SENHA_ADMIN }}
           EMAIL_ALUNO: ${{ secrets.EMAIL_ALUNO }}
           SENHA_ALUNO: ${{ secrets.SENHA_ALUNO }}
           MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos
+    
+      - name: Run Tests
+        run: npm test
