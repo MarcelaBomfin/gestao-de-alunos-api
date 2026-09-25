@@ -1,6 +1,6 @@
 import { adminHelper } from '../Helpers/adminHelper.js';
 import { expect } from 'chai';
-import alunos from '../data/alunos.json' with { type: 'json' };
+import alunos from '../Data/alunos.json' with { type: 'json' };
 
 describe('Cadastrar Alunos', () => {
 
