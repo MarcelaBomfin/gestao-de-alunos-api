@@ -35,13 +35,11 @@ jobs:
         with:
           mongodb-version: '7.0'
 
-      - name: Criar arquivo .env
-        run: |
-          echo "EMAIL_ADMIN=${{ secrets.EMAIL_ADMIN }}" >> .env
-          echo "SENHA_ADMIN=${{ secrets.SENHA_ADMIN }}" >> .env
-          echo "EMAIL_ALUNO=${{ secrets.EMAIL_ALUNO }}" >> .env
-          echo "SENHA_ALUNO=${{ secrets.SENHA_ALUNO }}" >> .env
-          echo "MONGODB_URI=mongodb://127.0.0.1:27017/gestao-de-alunos" >> .env
-
-      - name: Run Tests
+      - name: Executar testes
         run: npm test
+        env:
+          EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
+          SENHA_ADMIN: ${{ secrets.SENHA_ADMIN }}
+          EMAIL_ALUNO: ${{ secrets.EMAIL_ALUNO }}
+          SENHA_ALUNO: ${{ secrets.SENHA_ALUNO }}
+          MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos
