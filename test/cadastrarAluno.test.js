@@ -1,35 +1,23 @@
-import request from 'supertest';
-import app from '../src/app.js';
+import { adminHelper } from '../helpers/adminHelper.js';
 import { expect } from 'chai';
+import alunos from '../data/alunos.json' with { type: 'json' };
 
 describe('Cadastrar Alunos', () => {
 
-  it('deve retornar 200 e listar os alunos', async () => {
+    alunos.forEach((aluno) => {
 
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({
-        email: process.env.EMAIL_ADMIN,
-        senha: process.env.SENHA_ADMIN
-      });
+        it(`deve cadastrar o aluno ${aluno.nome}`, async () => {
 
-    const token = login.body.token;
+            const response = await adminHelper.cadastrarAluno({
+                ...aluno,
+                email: `${Date.now()}_${aluno.email}`,
+                matricula: `${Date.now()}`
+            });
 
-    const response = await request(app)
-      .get('/api/admin/alunos')
-      .set('Authorization', `Bearer ${token}`);
+            expect(response.status).to.equal(201);
 
-    expect(response.status).to.equal(200);
-    expect(response.body).to.be.an('array');
+        });
 
-    const aluno = response.body.find(
-      item => item.id === 'aluno-ana-souza'
-    );
-
-    expect(aluno).to.not.be.undefined;
-    expect(aluno.nome).to.equal('Ana Souza');
-    expect(aluno.email).to.equal('ana.souza@example.com');
-
-  });
+    });
 
 });
