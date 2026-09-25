@@ -1,0 +1,44 @@
+name: API Tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Subir MongoDB
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: '7.0'
+
+      - name: Executar testes
+        run: npm test
+        env:
+          EMAIL_ADMIN: ${{ secrets.EMAIL_ADMIN }}
+          SENHA_ADMIN: ${{ secrets.SENHA_ADMIN }}
+          EMAIL_ALUNO: ${{ secrets.EMAIL_ALUNO }}
+          SENHA_ALUNO: ${{ secrets.SENHA_ALUNO }}
+          MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos
